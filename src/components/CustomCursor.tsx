@@ -7,6 +7,7 @@ export default function CustomCursor() {
   const pos = useRef({ mx: 0, my: 0, rx: 0, ry: 0 });
 
   useEffect(() => {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     const dot  = dotRef.current;
     const ring = ringRef.current;
     if (!dot || !ring) return;

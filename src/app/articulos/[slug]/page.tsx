@@ -33,7 +33,7 @@ export default async function ArticlePage({ params }: Props) {
         <header className="art-topbar">
           <Link href="/" className="art-topbar-logo">
             <Image
-              src="/uploads/nm3e-letras-oscuras.jpeg"
+              src="/uploads/logo-white.png"
               alt="NM3E"
               width={120}
               height={33}

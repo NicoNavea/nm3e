@@ -88,11 +88,11 @@ export default function Contacto() {
               </div>
               <div className="d-row">
                 <span className="d-k">Cobertura</span>
-                <span className="d-v ok">Chile — Remoto global</span>
+                <span className="d-v ok">Chile</span>
               </div>
               <div className="d-row">
                 <span className="d-k">Diagnóstico inicial</span>
-                <span className="d-v ok">Sin costo ✓</span>
+                <span className="d-v ok">Sin costo en Santiago ✓</span>
               </div>
             </div>
           </div>
