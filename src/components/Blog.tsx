@@ -1,26 +1,5 @@
-const articles = [
-  {
-    date: "Junio 2025",
-    tag: "Calidad de Energía",
-    title: "Armónicos en redes industriales: qué son y por qué importan",
-    excerpt:
-      "Las distorsiones armónicas pueden elevar el consumo energético hasta un 30% sin que lo notes. Conoce cómo identificarlas antes de que provoquen fallas graves en tus equipos.",
-  },
-  {
-    date: "Mayo 2025",
-    tag: "Eficiencia",
-    title: "Cómo el factor de potencia afecta tu factura eléctrica",
-    excerpt:
-      "Un factor de potencia bajo no solo genera multas en tu tarifa: sobrecalienta transformadores y reduce la vida útil de tus equipos. Te explicamos cómo corregirlo paso a paso.",
-  },
-  {
-    date: "Abril 2025",
-    tag: "Mantenimiento",
-    title: "5 señales de alerta en una instalación eléctrica industrial",
-    excerpt:
-      "Desde disyuntores que saltan con frecuencia hasta iluminación inestable: estas señales indican que tu sistema eléctrico necesita diagnóstico urgente antes de la próxima parada.",
-  },
-];
+import Link from "next/link";
+import { articles } from "@/lib/articles";
 
 export default function Blog() {
   return (
@@ -42,7 +21,7 @@ export default function Blog() {
               </div>
               <h3 className="blog-t">{a.title}</h3>
               <p className="blog-b">{a.excerpt}</p>
-              <a href="#blog" className="blog-more">
+              <Link href={`/articulos/${a.slug}`} className="blog-more">
                 Leer artículo
                 <svg
                   width="12"
@@ -55,7 +34,7 @@ export default function Blog() {
                 >
                   <path d="m9 18 6-6-6-6" />
                 </svg>
-              </a>
+              </Link>
             </article>
           ))}
         </div>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Barlow_Condensed, Barlow, Space_Mono } from "next/font/google";
 import "./globals.css";
+import CartProvider from "@/components/CartProvider";
+import CartDrawer from "@/components/CartDrawer";
 
 const barlowCondensed = Barlow_Condensed({
   weight: ["400", "600", "700", "900"],
@@ -28,6 +30,11 @@ export const metadata: Metadata = {
   title: "NM3E — Calidad de Energía Eléctrica Industrial",
   description:
     "Diagnóstico, implementación y monitoreo continuo para instalaciones eléctricas industriales críticas en Chile.",
+  icons: {
+    icon: "/uploads/favicon.jpeg",
+    shortcut: "/uploads/favicon.jpeg",
+    apple: "/uploads/favicon.jpeg",
+  },
 };
 
 export default function RootLayout({
@@ -47,7 +54,10 @@ export default function RootLayout({
           } as React.CSSProperties
         }
       >
-        {children}
+        <CartProvider>
+          {children}
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );

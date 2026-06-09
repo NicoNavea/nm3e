@@ -25,7 +25,7 @@ Headless Shopify storefront built with Next.js 16 App Router, React 19, TypeScri
 **Path alias**: `@/*` resolves to `src/*`.
 
 **Environment variables required**:
-- `SHOPIFY_STORE_DOMAIN` — used by both clients
+- `NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN` — used by both clients (must be NEXT_PUBLIC_ so the browser client can access it)
 - `NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN` — public token for browser client
 - `SHOPIFY_STOREFRONT_PRIVATE_TOKEN` — private token for server client
 

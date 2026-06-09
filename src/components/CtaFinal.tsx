@@ -9,7 +9,7 @@ export default function CtaFinal() {
         <p className="ctaf-sub">
           La nuestra tampoco. Contáctanos y agenda un diagnóstico gratuito de tu instalación eléctrica.
         </p>
-        <a href="mailto:contacto@nm3e.cl" className="btn btn-fire btn-lg">
+        <a href="#contacto" className="btn btn-fire btn-lg">
           Solicitar Diagnóstico Gratuito
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
             <path d="m9 18 6-6-6-6"/>

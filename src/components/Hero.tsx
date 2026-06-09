@@ -57,13 +57,13 @@ export default function Hero() {
           Diagnóstico, implementación y monitoreo continuo para instalaciones eléctricas industriales críticas en Chile.
         </p>
         <div className="hero-ctas hero-intro-hidden">
-          <a href="mailto:contacto@nm3e.cl" className="btn btn-fire btn-lg">
+          <a href="#contacto" className="btn btn-fire btn-lg">
             Solicitar Diagnóstico
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
               <path d="m9 18 6-6-6-6" />
             </svg>
           </a>
-          <a href="#tienda" className="btn btn-ghost btn-lg">Ver Tienda</a>
+          <a href="/tienda" className="btn btn-ghost btn-lg">Ver Tienda</a>
         </div>
       </div>
       <div className="hero-scroll hero-intro-hidden">

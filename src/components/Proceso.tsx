@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import Image from "next/image";
 
 export default function Proceso() {
   useEffect(() => {
@@ -50,6 +51,49 @@ export default function Proceso() {
             <div className="paso-n">03</div>
             <h3 className="paso-t">Monitoreo</h3>
             <p className="paso-b">Seguimiento continuo post-implementación. Alertas en tiempo real y reportes periódicos para garantizar el uptime a largo plazo.</p>
+          </div>
+        </div>
+        <div className="rv" style={{ marginTop: 72, maxWidth: 720, margin: "72px auto 0" }}>
+          <div style={{
+            background: "var(--surface2)",
+            border: "1px solid var(--border)",
+            position: "relative",
+            padding: "32px",
+          }}>
+            {/* top-left corner cut */}
+            <svg style={{ position: "absolute", top: -1, left: -1, display: "block" }} width="24" height="24" viewBox="0 0 24 24">
+              <polygon points="0,0 24,0 0,24" fill="var(--bg)" />
+              <polyline points="24,0 0,0 0,24" fill="none" stroke="var(--primary)" strokeWidth="1.5" />
+            </svg>
+            {/* bottom-right corner cut */}
+            <svg style={{ position: "absolute", bottom: -1, right: -1, display: "block" }} width="24" height="24" viewBox="0 0 24 24">
+              <polygon points="24,24 0,24 24,0" fill="var(--bg)" />
+              <polyline points="0,24 24,24 24,0" fill="none" stroke="var(--primary)" strokeWidth="1.5" />
+            </svg>
+            <div style={{
+              position: "absolute", top: 0, left: 0, right: 0, height: 2,
+              background: "linear-gradient(to right, var(--primary), transparent)",
+            }} />
+            <div style={{
+              display: "flex", alignItems: "center", gap: 8,
+              fontFamily: "var(--fMono)", fontSize: 9.5, color: "var(--muted)",
+              letterSpacing: ".2em", textTransform: "uppercase", marginBottom: 24,
+            }}>
+              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--primary)", display: "inline-block", animation: "blink 1.4s ease-in-out infinite" }} />
+              Ciclo de servicios
+            </div>
+            <div style={{
+              clipPath: "polygon(28px 0%, 100% 0%, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0% 100%, 0% 28px)",
+            }}>
+              <Image
+                src="/uploads/workflow.png"
+                alt="Ciclo de servicios NM3E"
+                width={656}
+                height={437}
+                unoptimized
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
+            </div>
           </div>
         </div>
       </div>
