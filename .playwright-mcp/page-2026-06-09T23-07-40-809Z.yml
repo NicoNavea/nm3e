@@ -1,0 +1,331 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - link "Inicio" [ref=e3] [cursor=pointer]:
+      - /url: /
+    - link "Blog" [ref=e4] [cursor=pointer]:
+      - /url: "#blog"
+    - link "Servicios" [ref=e5] [cursor=pointer]:
+      - /url: "#servicios"
+    - link "Tienda" [ref=e6] [cursor=pointer]:
+      - /url: /tienda
+    - link "Proceso" [ref=e7] [cursor=pointer]:
+      - /url: "#proceso"
+    - link "Contacto" [ref=e8] [cursor=pointer]:
+      - /url: "#contacto"
+    - link "Solicitar Diagnóstico" [ref=e9] [cursor=pointer]:
+      - /url: "#contacto"
+  - navigation [ref=e10]:
+    - generic [ref=e11]:
+      - link "NM3E" [ref=e12] [cursor=pointer]:
+        - /url: "#hero"
+        - img "NM3E" [ref=e13]
+      - list [ref=e14]:
+        - listitem [ref=e15]:
+          - link "Inicio" [ref=e16] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e17]:
+          - link "Blog" [ref=e18] [cursor=pointer]:
+            - /url: "#blog"
+        - listitem [ref=e19]:
+          - link "Servicios" [ref=e20] [cursor=pointer]:
+            - /url: "#servicios"
+        - listitem [ref=e21]:
+          - link "Tienda" [ref=e22] [cursor=pointer]:
+            - /url: /tienda
+        - listitem [ref=e23]:
+          - link "Proceso" [ref=e24] [cursor=pointer]:
+            - /url: "#proceso"
+        - listitem [ref=e25]:
+          - link "Contacto" [ref=e26] [cursor=pointer]:
+            - /url: "#contacto"
+      - generic [ref=e27]:
+        - link "Solicitar Diagnóstico" [ref=e28] [cursor=pointer]:
+          - /url: "#contacto"
+        - button "Cambiar tema" [active] [ref=e29] [cursor=pointer]:
+          - img [ref=e30]
+        - button "Carrito" [ref=e32] [cursor=pointer]:
+          - img [ref=e33]
+  - generic [ref=e36]:
+    - generic [ref=e37]:
+      - paragraph [ref=e38]: // Sistema activo — Diagnóstico inteligente en tiempo real
+      - heading "Tu operación no puede detenerse. La nuestra tampoco." [level=1] [ref=e39]:
+        - generic [ref=e40]: Tu operación
+        - generic [ref=e41]: no puede detenerse.
+        - generic [ref=e42]: La nuestra tampoco.
+      - paragraph [ref=e43]: Diagnóstico, implementación y monitoreo continuo para instalaciones eléctricas industriales críticas en Chile.
+      - generic [ref=e44]:
+        - link "Solicitar Diagnóstico" [ref=e45] [cursor=pointer]:
+          - /url: "#contacto"
+          - text: Solicitar Diagnóstico
+          - img [ref=e46]
+        - link "Ver Tienda" [ref=e48] [cursor=pointer]:
+          - /url: /tienda
+    - paragraph [ref=e51]: Scroll
+  - generic [ref=e52]:
+    - text: ERROR
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - paragraph [ref=e56]: Sistema en riesgo
+        - heading "Las fallas no avisan." [level=2] [ref=e57]:
+          - text: Las fallas no
+          - text: avisan.
+        - generic [ref=e58]:
+          - generic [ref=e59]:
+            - img [ref=e61]
+            - generic [ref=e63]:
+              - paragraph [ref=e64]: Paradas no programadas
+              - paragraph [ref=e65]: Una falla eléctrica imprevista puede costar cientos de miles de dólares en producción parada. Sin diagnóstico previo, el riesgo es invisible.
+          - generic [ref=e66]:
+            - img [ref=e68]
+            - generic [ref=e70]:
+              - paragraph [ref=e71]: Armónicos invisibles
+              - paragraph [ref=e72]: Variadores de frecuencia y cargas no lineales generan distorsión armónica que destruye motores, transformadores y equipos en silencio.
+          - generic [ref=e73]:
+            - img [ref=e75]
+            - generic [ref=e78]:
+              - paragraph [ref=e79]: Multas por factor de potencia
+              - paragraph [ref=e80]: Un factor de potencia bajo genera sobrecargos acumulados mes a mes en tu factura eléctrica. La corrección se paga sola en meses.
+      - generic [ref=e82]:
+        - generic [ref=e83]: MONITOR_SISTEMA // ESTADO_ACTUAL
+        - generic [ref=e85]:
+          - generic [ref=e86]: THD tensión (V)
+          - generic [ref=e87]: 8.4 %
+        - generic [ref=e88]:
+          - generic [ref=e89]: Factor de potencia
+          - generic [ref=e90]: "0.72"
+        - generic [ref=e91]:
+          - generic [ref=e92]: Temp. tablero principal
+          - generic [ref=e93]: 67 °C
+        - generic [ref=e94]:
+          - generic [ref=e95]: Interrupciones / mes
+          - generic [ref=e96]: 3 eventos
+        - generic [ref=e97]:
+          - generic [ref=e98]: Pérdida estimada mensual
+          - generic [ref=e99]: $41.200 USD
+        - generic [ref=e100]: ── POST-INTERVENCIÓN NM3E ──────────
+        - generic [ref=e101]:
+          - generic [ref=e102]: THD tensión (V)
+          - generic [ref=e103]: 1.2 % ✓
+        - generic [ref=e104]:
+          - generic [ref=e105]: Factor de potencia
+          - generic [ref=e106]: 0.98 ✓
+        - generic [ref=e107]:
+          - generic [ref=e108]: Interrupciones / mes
+          - generic [ref=e109]: 0 eventos ✓
+  - generic [ref=e111]:
+    - paragraph [ref=e112]: Blog
+    - heading "Últimos Artículos" [level=2] [ref=e113]
+    - generic [ref=e114]:
+      - article [ref=e115]:
+        - generic [ref=e116]:
+          - generic [ref=e117]: Calidad de Energía
+          - generic [ref=e118]: Junio 2026
+        - 'heading "Armónicos en redes industriales: qué son y por qué importan" [level=3] [ref=e119]'
+        - paragraph [ref=e120]: Las distorsiones armónicas pueden elevar el consumo energético hasta un 30% sin que lo notes. Conoce cómo identificarlas antes de que provoquen fallas graves en tus equipos.
+        - link "Leer artículo" [ref=e121] [cursor=pointer]:
+          - /url: /articulos/armonicos-redes-industriales
+          - text: Leer artículo
+          - img [ref=e122]
+      - article [ref=e124]:
+        - generic [ref=e125]:
+          - generic [ref=e126]: Eficiencia
+          - generic [ref=e127]: Mayo 2026
+        - heading "Cómo el factor de potencia afecta tu factura eléctrica" [level=3] [ref=e128]
+        - paragraph [ref=e129]: "Un factor de potencia bajo no solo genera multas en tu tarifa: sobrecalienta transformadores y reduce la vida útil de tus equipos. Te explicamos cómo corregirlo paso a paso."
+        - link "Leer artículo" [ref=e130] [cursor=pointer]:
+          - /url: /articulos/factor-de-potencia
+          - text: Leer artículo
+          - img [ref=e131]
+      - article [ref=e133]:
+        - generic [ref=e134]:
+          - generic [ref=e135]: Mantenimiento
+          - generic [ref=e136]: Abril 2026
+        - heading "5 señales de alerta en una instalación eléctrica industrial" [level=3] [ref=e137]
+        - paragraph [ref=e138]: "Desde disyuntores que saltan con frecuencia hasta iluminación inestable: estas señales indican que tu sistema eléctrico necesita diagnóstico urgente antes de la próxima parada."
+        - link "Leer artículo" [ref=e139] [cursor=pointer]:
+          - /url: /articulos/senales-alerta-instalacion-electrica
+          - text: Leer artículo
+          - img [ref=e140]
+  - generic [ref=e143]:
+    - generic [ref=e144]:
+      - generic [ref=e145]:
+        - paragraph [ref=e146]: Soluciones
+        - heading "Lo que hacemos" [level=2] [ref=e147]
+      - link "Consultar servicios" [ref=e148] [cursor=pointer]:
+        - /url: "#contacto"
+    - generic [ref=e149]:
+      - generic [ref=e150]:
+        - paragraph [ref=e151]: "01"
+        - img [ref=e152]
+        - heading "Análisis de Calidad de Energía" [level=3] [ref=e157]
+        - paragraph [ref=e158]: "Medición y diagnóstico completo: armónicos, flicker, desequilibrios y factor de potencia. Detectamos lo que el ojo no ve antes de que se convierta en falla."
+      - generic [ref=e159]:
+        - paragraph [ref=e160]: "02"
+        - img [ref=e161]
+        - heading "Suministro e Instalación" [level=3] [ref=e166]
+        - paragraph [ref=e167]: Filtros activos de armónicos, UPS industriales y bancos de capacitores. Desde la ingeniería del proyecto hasta la puesta en marcha con mínima interrupción.
+      - generic [ref=e168]:
+        - paragraph [ref=e169]: "03"
+        - img [ref=e170]
+        - heading "Monitoreo Eléctrico Continuo" [level=3] [ref=e178]
+        - paragraph [ref=e179]: Supervisión remota 24/7. Dashboard en tiempo real, alertas automáticas y reportes periódicos para que tu equipo siempre sepa lo que pasa en la red.
+      - generic [ref=e180]:
+        - paragraph [ref=e181]: "04"
+        - img [ref=e182]
+        - heading "Mantenimiento de Tableros" [level=3] [ref=e186]
+        - paragraph [ref=e187]: Inspección termográfica, ajuste de conexiones, limpieza de componentes y verificación de protecciones. Cero tolerancia a fallos en sistemas críticos.
+  - generic [ref=e189]:
+    - generic [ref=e190]:
+      - paragraph [ref=e191]: Metodología
+      - heading "Cómo trabajamos" [level=2] [ref=e192]
+      - paragraph [ref=e193]: Un proceso probado en industrias, hospitales y centros de datos donde cada minuto de uptime importa.
+    - generic [ref=e194]:
+      - img [ref=e196]
+      - generic [ref=e197]:
+        - generic [ref=e198]: "01"
+        - heading "Diagnóstico" [level=3] [ref=e199]
+        - paragraph [ref=e200]: Medición de calidad de energía en tu instalación. Identificamos armónicos, factor de potencia, desequilibrios y vulnerabilidades ocultas.
+      - generic [ref=e201]:
+        - generic [ref=e202]: "02"
+        - heading "Implementación" [level=3] [ref=e203]
+        - paragraph [ref=e204]: Ingeniería y ejecución del plan correctivo. Instalación de equipamiento certificado con la mínima interrupción posible a tu operación.
+      - generic [ref=e205]:
+        - generic [ref=e206]: "03"
+        - heading "Monitoreo" [level=3] [ref=e207]
+        - paragraph [ref=e208]: Seguimiento continuo post-implementación. Alertas en tiempo real y reportes periódicos para garantizar el uptime a largo plazo.
+    - generic [ref=e210]:
+      - img [ref=e211]
+      - img [ref=e214]
+      - generic [ref=e218]: Ciclo de servicios
+      - img "Ciclo de servicios NM3E" [ref=e221]
+  - generic [ref=e223]:
+    - generic [ref=e224]:
+      - generic [ref=e225]:
+        - generic [ref=e226]: +
+        - generic [ref=e227]: "0"
+      - paragraph [ref=e228]: Proyectos completados
+    - generic [ref=e229]:
+      - generic [ref=e230]:
+        - generic [ref=e231]: +
+        - generic [ref=e232]: "0"
+      - paragraph [ref=e233]: Equipos instalados
+    - generic [ref=e234]:
+      - generic [ref=e235]:
+        - generic [ref=e236]: "0"
+        - generic [ref=e237]: años
+      - paragraph [ref=e238]: Experiencia en el sector
+    - generic [ref=e239]:
+      - generic [ref=e240]:
+        - generic [ref=e241]: "0"
+        - generic [ref=e242]: "%"
+      - paragraph [ref=e243]: Uptime en sistemas críticos
+  - generic [ref=e246]:
+    - generic [ref=e247]:
+      - paragraph [ref=e248]: Contacto
+      - heading "Hablemos de tu proyecto" [level=2] [ref=e249]:
+        - text: Hablemos de
+        - text: tu proyecto
+      - paragraph [ref=e250]: Cuéntanos el desafío que enfrenta tu operación. Nuestro equipo revisa cada consulta y responde en menos de 24 horas hábiles.
+      - generic [ref=e251]:
+        - generic [ref=e252]: CANAL_DIRECTO // NM3E
+        - generic [ref=e254]:
+          - generic [ref=e255]: Email
+          - link "contacto@nm3e.cl" [ref=e256] [cursor=pointer]:
+            - /url: mailto:contacto@nm3e.cl
+        - generic [ref=e257]:
+          - generic [ref=e258]: Tiempo de respuesta
+          - generic [ref=e259]: < 24 hrs hábiles
+        - generic [ref=e260]:
+          - generic [ref=e261]: Cobertura
+          - generic [ref=e262]: Chile
+        - generic [ref=e263]:
+          - generic [ref=e264]: Diagnóstico inicial
+          - generic [ref=e265]: Sin costo en Santiago ✓
+    - generic [ref=e267]:
+      - generic [ref=e268]: FORMULARIO_CONTACTO
+      - generic [ref=e270]:
+        - generic [ref=e271]:
+          - generic [ref=e272]:
+            - generic [ref=e273]: Nombre
+            - textbox "Tu nombre" [ref=e274]
+          - generic [ref=e275]:
+            - generic [ref=e276]: Empresa (opcional)
+            - textbox "Tu empresa" [ref=e277]
+        - generic [ref=e278]:
+          - generic [ref=e279]: Email
+          - textbox "correo@empresa.cl" [ref=e280]
+        - generic [ref=e281]:
+          - generic [ref=e282]:
+            - text: Mensaje
+            - generic [ref=e283]: 0/1000
+          - textbox "Describe brevemente el desafío de tu operación…" [ref=e284]
+        - generic [ref=e285]: ── ENVÍO SEGURO — RESPUESTA GARANTIZADA ──────────
+        - button "Enviar mensaje" [ref=e286]:
+          - text: Enviar mensaje
+          - img [ref=e287]
+  - generic [ref=e291]:
+    - paragraph [ref=e292]: // No esperes la falla
+    - heading "Tu operación no puede permitirse una sola falla." [level=2] [ref=e293]:
+      - text: Tu operación no
+      - text: puede permitirse
+      - emphasis [ref=e294]: una sola falla.
+    - paragraph [ref=e295]: La nuestra tampoco. Contáctanos y agenda un diagnóstico gratuito de tu instalación eléctrica.
+    - link "Solicitar Diagnóstico Gratuito" [ref=e296] [cursor=pointer]:
+      - /url: "#contacto"
+      - text: Solicitar Diagnóstico Gratuito
+      - img [ref=e297]
+  - contentinfo [ref=e299]:
+    - generic [ref=e300]:
+      - generic [ref=e301]:
+        - generic [ref=e302]:
+          - link "NM3E" [ref=e303] [cursor=pointer]:
+            - /url: "#hero"
+            - img "NM3E" [ref=e304]
+          - paragraph [ref=e305]: Ingeniería eléctrica industrial. Diagnóstico, implementación y monitoreo continuo para instalaciones que no pueden detenerse.
+        - generic [ref=e306]:
+          - paragraph [ref=e307]: Servicios
+          - list [ref=e308]:
+            - listitem [ref=e309]:
+              - link "Análisis de calidad" [ref=e310] [cursor=pointer]:
+                - /url: "#servicios"
+            - listitem [ref=e311]:
+              - link "Suministro e instalación" [ref=e312] [cursor=pointer]:
+                - /url: "#servicios"
+            - listitem [ref=e313]:
+              - link "Monitoreo continuo" [ref=e314] [cursor=pointer]:
+                - /url: "#servicios"
+            - listitem [ref=e315]:
+              - link "Mantenimiento" [ref=e316] [cursor=pointer]:
+                - /url: "#servicios"
+        - generic [ref=e317]:
+          - paragraph [ref=e318]: Contacto
+          - list [ref=e319]:
+            - listitem [ref=e320]:
+              - link "contacto@nm3e.cl" [ref=e321] [cursor=pointer]:
+                - /url: "#contacto"
+            - listitem [ref=e322]:
+              - link "+56 9 7693 2386" [ref=e323] [cursor=pointer]:
+                - /url: https://wa.me/56976932386
+            - listitem [ref=e324]: Santiago, Chile
+          - paragraph [ref=e325]: Redes
+          - generic [ref=e326]:
+            - link "LinkedIn" [ref=e327] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/nmingenieria/
+              - img [ref=e328]
+            - link "Instagram" [ref=e332] [cursor=pointer]:
+              - /url: https://www.instagram.com/nm3e_ingenieria/
+              - img [ref=e333]
+      - generic [ref=e336]:
+        - generic [ref=e337]: © 2026 NM3E — Todos los derechos reservados
+        - generic [ref=e338]: Santiago, Chile
+  - complementary [ref=e339]:
+    - generic [ref=e340]:
+      - generic [ref=e341]: Carrito
+      - button "Cerrar carrito" [ref=e342] [cursor=pointer]:
+        - img [ref=e343]
+    - generic [ref=e345]:
+      - img [ref=e346]
+      - paragraph [ref=e349]: El carrito está vacío
+  - button "Open Next.js Dev Tools" [ref=e355] [cursor=pointer]:
+    - img [ref=e356]
+  - alert [ref=e359]
