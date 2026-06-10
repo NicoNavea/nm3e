@@ -1,99 +1,57 @@
-"use client";
-
-import { useEffect, useState } from "react";
+import { storefrontServerClient } from "@/lib/shopify/server-client";
+import { getProductsQuery } from "@/lib/shopify/queries";
 import type { ShopifyProduct } from "@/lib/shopify/types";
-import { useCartStore } from "@/store/cart";
+import TiendaGrid from "./TiendaGrid";
 
-interface Props {
-  products: ShopifyProduct[];
-  categories: string[];
+async function getProducts(): Promise<ShopifyProduct[]> {
+  try {
+    const { data, errors } = await storefrontServerClient.request(
+      getProductsQuery,
+      { variables: { first: 24 } }
+    );
+
+    if (errors || !data) return [];
+
+    return (data.products.edges as { node: ShopifyProduct }[]).map(
+      (edge) => edge.node
+    );
+  } catch {
+    return [];
+  }
 }
 
-function formatPrice(amount: string, currencyCode: string) {
-  return new Intl.NumberFormat("es-CL", {
-    style: "currency",
-    currency: currencyCode,
-    maximumFractionDigits: 0,
-  }).format(parseFloat(amount));
-}
+export default async function Tienda() {
+  const products = await getProducts();
 
-function categorySlug(category: string) {
-  return category
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
-
-export default function TiendaGrid({ products, categories }: Props) {
-  const [active, setActive] = useState("all");
-  const addItem = useCartStore((state) => state.addItem);
-
-  useEffect(() => {
-    const selectCategoryFromHash = () => {
-      const hash = decodeURIComponent(window.location.hash.slice(1));
-
-      if (!hash) {
-        setActive("all");
-        return;
-      }
-
-      const matchingCategory = categories.find(
-        (category) => categorySlug(category) === hash
-      );
-
-      setActive(matchingCategory ?? "all");
-    };
-
-    selectCategoryFromHash();
-    window.addEventListener("hashchange", selectCategoryFromHash);
-
-    return () => {
-      window.removeEventListener("hashchange", selectCategoryFromHash);
-    };
-  }, [categories]);
-
-  const selectCategory = (category: string) => {
-    setActive(category);
-
-    const nextHash =
-      category === "all" ? window.location.pathname : `#${categorySlug(category)}`;
-
-    window.history.replaceState(null, "", nextHash);
-  };
-
-  const visible =
-    active === "all"
-      ? products
-      : products.filter(
-          (product) =>
-            product.productType.toLowerCase() === active.toLowerCase()
-        );
+  const categories = Array.from(
+    new Set(products.map((product) => product.productType).filter(Boolean))
+  );
 
   return (
-    <>
-      <div className="shop-filters rv">
-        <button
-          className={`f-btn${active === "all" ? " active" : ""}`}
-          onClick={() => selectCategory("all")}
-        >
-          Todos
-        </button>
+    <section id="tienda" className="section">
+      <div className="inner">
+        <div className="shop-hd">
+          <div>
+            <p className="s-label rv">Equipamiento Profesional</p>
+            <h2 className="s-title rv">Tienda</h2>
+            <p
+              className="s-body rv"
+              style={{ maxWidth: 460, marginTop: 10 }}
+            >
+              Equipos certificados para diagnóstico, protección y monitoreo de
+              instalaciones eléctricas industriales. Despacho a todo Chile.
+            </p>
+          </div>
+        </div>
 
-        {categories.map((category) => (
-          <button
-            key={category}
-            className={`f-btn${active === category ? " active" : ""}`}
-            onClick={() => selectCategory(category)}
-          >
-            {category.charAt(0).toUpperCase() + category.slice(1)}
-          </button>
-        ))}
+        {products.length > 0 ? (
+          <TiendaGrid products={products} categories={categories} />
+        ) : (
+          <p className="shop-empty rv">
+            No se pudieron cargar los productos. Intenta más tarde.
+          </p>
+        )}
       </div>
-
-      <div className="prod-grid">
-        {visible.map((product) => {
-          const image = product.images.edges[0]?.node;
-          const price = product.priceRange.minVariantPrice;
+    </section>
+  );
+}
