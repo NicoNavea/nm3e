@@ -139,7 +139,7 @@ export default function TiendaGrid({ products, categories }: Props) {
           return (
             <div
               key={product.id}
-              className="prod-card rv"
+              className="prod-card"
               data-cat={product.productType}
             >
               <div className="prod-img">
