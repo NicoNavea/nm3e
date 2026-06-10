@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Mensaje demasiado corto." }, { status: 400 });
 
   const { error } = await resend.emails.send({
-    from: "Formulario NM3E <onboarding@resend.dev>",
+    from: "Formulario NM3E <contacto@nm3e.cl>",
     to: "n.navea@nm3e.cl",
     replyTo: email,
     subject: `Contacto NM3E — ${nombre}`,
