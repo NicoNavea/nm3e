@@ -9,6 +9,14 @@ interface Props {
   categories: string[];
 }
 
+const menuCategories = [
+  "calidad-de-energia",
+  "respaldo-energetico",
+  "iluminacion",
+  "monitoreo-energetico",
+  "servicios",
+];
+
 function formatPrice(amount: string, currencyCode: string) {
   return new Intl.NumberFormat("es-CL", {
     style: "currency",
@@ -40,11 +48,7 @@ export default function TiendaGrid({ products, categories }: Props) {
         return;
       }
 
-      const matchingCategory = categories.find(
-        (category) => categorySlug(category) === hash
-      );
-
-      setActive(matchingCategory ?? "all");
+      setActive(menuCategories.includes(hash) ? hash : "all");
     };
 
     selectCategoryFromHash();
@@ -53,23 +57,26 @@ export default function TiendaGrid({ products, categories }: Props) {
     return () => {
       window.removeEventListener("hashchange", selectCategoryFromHash);
     };
-  }, [categories]);
+  }, []);
 
   const selectCategory = (category: string) => {
-    setActive(category);
+    const slug = category === "all" ? "all" : categorySlug(category);
 
-    const nextHash =
-      category === "all" ? window.location.pathname : `#${categorySlug(category)}`;
+    setActive(slug);
 
-    window.history.replaceState(null, "", nextHash);
+    const nextUrl =
+      slug === "all"
+        ? window.location.pathname
+        : `${window.location.pathname}#${slug}`;
+
+    window.history.replaceState(null, "", nextUrl);
   };
 
   const visible =
     active === "all"
       ? products
       : products.filter(
-          (product) =>
-            product.productType.toLowerCase() === active.toLowerCase()
+          (product) => categorySlug(product.productType) === active
         );
 
   return (
@@ -85,7 +92,9 @@ export default function TiendaGrid({ products, categories }: Props) {
         {categories.map((category) => (
           <button
             key={category}
-            className={`f-btn${active === category ? " active" : ""}`}
+            className={`f-btn${
+              active === categorySlug(category) ? " active" : ""
+            }`}
             onClick={() => selectCategory(category)}
           >
             {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -113,11 +122,15 @@ export default function TiendaGrid({ products, categories }: Props) {
                     loading="lazy"
                   />
                 ) : (
-                  <span className="prod-img-lbl">{product.title}</span>
+                  <span className="prod-img-lbl">
+                    {product.title}
+                  </span>
                 )}
 
                 {product.productType && (
-                  <span className="prod-badge">{product.productType}</span>
+                  <span className="prod-badge">
+                    {product.productType}
+                  </span>
                 )}
 
                 <span className="prod-dot" />
@@ -125,7 +138,10 @@ export default function TiendaGrid({ products, categories }: Props) {
 
               <div className="prod-body">
                 <h3 className="prod-name">{product.title}</h3>
-                <p className="prod-desc">{product.description}</p>
+
+                <p className="prod-desc">
+                  {product.description}
+                </p>
 
                 <div className="prod-foot">
                   <span className="prod-price">
@@ -144,17 +160,23 @@ export default function TiendaGrid({ products, categories }: Props) {
 
                     <button
                       className={`btn btn-acc btn-sm${
-                        !product.availableForSale ? " btn-disabled" : ""
+                        !product.availableForSale
+                          ? " btn-disabled"
+                          : ""
                       }`}
                       disabled={!product.availableForSale}
                       onClick={() => {
                         const variantId =
                           product.variants.edges[0]?.node.id;
 
-                        if (variantId) addItem(variantId);
+                        if (variantId) {
+                          addItem(variantId);
+                        }
                       }}
                     >
-                      {product.availableForSale ? "+ Carro" : "Sin stock"}
+                      {product.availableForSale
+                        ? "+ Carro"
+                        : "Sin stock"}
                     </button>
                   </div>
                 </div>
