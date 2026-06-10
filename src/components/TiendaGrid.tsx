@@ -25,12 +25,16 @@ function formatPrice(amount: string, currencyCode: string) {
   }).format(parseFloat(amount));
 }
 
-function categorySlug(category: string) {
-  return category
+function normalizeText(text: string) {
+  return text
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
-    .trim()
+    .trim();
+}
+
+function categorySlug(category: string) {
+  return normalizeText(category)
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 }
@@ -41,26 +45,40 @@ export default function TiendaGrid({ products, categories }: Props) {
 
   useEffect(() => {
     const selectCategoryFromHash = () => {
-      const hash = decodeURIComponent(window.location.hash.slice(1));
+      const hash = decodeURIComponent(
+        window.location.hash.slice(1)
+      );
 
       if (!hash) {
         setActive("all");
         return;
       }
 
-      setActive(menuCategories.includes(hash) ? hash : "all");
+      setActive(
+        menuCategories.includes(hash) ? hash : "all"
+      );
     };
 
     selectCategoryFromHash();
-    window.addEventListener("hashchange", selectCategoryFromHash);
+
+    window.addEventListener(
+      "hashchange",
+      selectCategoryFromHash
+    );
 
     return () => {
-      window.removeEventListener("hashchange", selectCategoryFromHash);
+      window.removeEventListener(
+        "hashchange",
+        selectCategoryFromHash
+      );
     };
   }, []);
 
   const selectCategory = (category: string) => {
-    const slug = category === "all" ? "all" : categorySlug(category);
+    const slug =
+      category === "all"
+        ? "all"
+        : categorySlug(category);
 
     setActive(slug);
 
@@ -76,14 +94,17 @@ export default function TiendaGrid({ products, categories }: Props) {
     active === "all"
       ? products
       : products.filter(
-          (product) => categorySlug(product.productType) === active
+          (product) =>
+            categorySlug(product.productType) === active
         );
 
   return (
     <>
       <div className="shop-filters rv">
         <button
-          className={`f-btn${active === "all" ? " active" : ""}`}
+          className={`f-btn${
+            active === "all" ? " active" : ""
+          }`}
           onClick={() => selectCategory("all")}
         >
           Todos
@@ -93,11 +114,14 @@ export default function TiendaGrid({ products, categories }: Props) {
           <button
             key={category}
             className={`f-btn${
-              active === categorySlug(category) ? " active" : ""
+              active === categorySlug(category)
+                ? " active"
+                : ""
             }`}
             onClick={() => selectCategory(category)}
           >
-            {category.charAt(0).toUpperCase() + category.slice(1)}
+            {category.charAt(0).toUpperCase() +
+              category.slice(1)}
           </button>
         ))}
       </div>
@@ -106,6 +130,11 @@ export default function TiendaGrid({ products, categories }: Props) {
         {visible.map((product) => {
           const image = product.images.edges[0]?.node;
           const price = product.priceRange.minVariantPrice;
+
+          const isQuoteOnly = product.tags.some(
+            (tag) =>
+              normalizeText(tag) === "solo cotizacion"
+          );
 
           return (
             <div
@@ -137,7 +166,9 @@ export default function TiendaGrid({ products, categories }: Props) {
               </div>
 
               <div className="prod-body">
-                <h3 className="prod-name">{product.title}</h3>
+                <h3 className="prod-name">
+                  {product.title}
+                </h3>
 
                 <p className="prod-desc">
                   {product.description}
@@ -145,39 +176,54 @@ export default function TiendaGrid({ products, categories }: Props) {
 
                 <div className="prod-foot">
                   <span className="prod-price">
-                    {formatPrice(price.amount, price.currencyCode)}
+                    {formatPrice(
+                      price.amount,
+                      price.currencyCode
+                    )}
                   </span>
 
                   <div className="prod-acts">
-                    {product.availableForSale && (
-                      <a
-                        href={`/productos/${product.handle}`}
-                        className="btn btn-ghost btn-sm"
-                      >
-                        Ver
-                      </a>
-                    )}
-
-                    <button
-                      className={`btn btn-acc btn-sm${
-                        !product.availableForSale
-                          ? " btn-disabled"
-                          : ""
-                      }`}
-                      disabled={!product.availableForSale}
-                      onClick={() => {
-                        const variantId =
-                          product.variants.edges[0]?.node.id;
-
-                        if (variantId) {
-                          addItem(variantId);
-                        }
-                      }}
+                    <a
+                      href={`/productos/${product.handle}`}
+                      className="btn btn-ghost btn-sm"
                     >
-                      {product.availableForSale
-                        ? "+ Carro"
-                        : "Sin stock"}
-                    </button>
+                      Ver
+                    </a>
+
+                    {isQuoteOnly ? (
+                      <a
+                        href={`/?producto=${encodeURIComponent(
+                          product.title
+                        )}#contacto`}
+                        className="btn btn-acc btn-sm"
+                      >
+                        Cotizar
+                      </a>
+                    ) : (
+                      <button
+                        className={`btn btn-acc btn-sm${
+                          !product.availableForSale
+                            ? " btn-disabled"
+                            : ""
+                        }`}
+                        disabled={
+                          !product.availableForSale
+                        }
+                        onClick={() => {
+                          const variantId =
+                            product.variants.edges[0]
+                              ?.node.id;
+
+                          if (variantId) {
+                            addItem(variantId);
+                          }
+                        }}
+                      >
+                        {product.availableForSale
+                          ? "+ Carro"
+                          : "Sin stock"}
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
