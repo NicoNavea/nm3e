@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import type { ShopifyProduct } from "@/lib/shopify/types";
 import { useCartStore } from "@/store/cart";
 
@@ -16,15 +17,59 @@ function formatPrice(amount: string, currencyCode: string) {
   }).format(parseFloat(amount));
 }
 
+function categorySlug(category: string) {
+  return category
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 export default function TiendaGrid({ products, categories }: Props) {
   const [active, setActive] = useState("all");
-  const addItem = useCartStore((s) => s.addItem);
+  const addItem = useCartStore((state) => state.addItem);
+
+  useEffect(() => {
+    const selectCategoryFromHash = () => {
+      const hash = decodeURIComponent(window.location.hash.slice(1));
+
+      if (!hash) {
+        setActive("all");
+        return;
+      }
+
+      const matchingCategory = categories.find(
+        (category) => categorySlug(category) === hash
+      );
+
+      setActive(matchingCategory ?? "all");
+    };
+
+    selectCategoryFromHash();
+    window.addEventListener("hashchange", selectCategoryFromHash);
+
+    return () => {
+      window.removeEventListener("hashchange", selectCategoryFromHash);
+    };
+  }, [categories]);
+
+  const selectCategory = (category: string) => {
+    setActive(category);
+
+    const nextHash =
+      category === "all" ? window.location.pathname : `#${categorySlug(category)}`;
+
+    window.history.replaceState(null, "", nextHash);
+  };
 
   const visible =
     active === "all"
       ? products
       : products.filter(
-          (p) => p.productType.toLowerCase() === active.toLowerCase()
+          (product) =>
+            product.productType.toLowerCase() === active.toLowerCase()
         );
 
   return (
@@ -32,66 +77,84 @@ export default function TiendaGrid({ products, categories }: Props) {
       <div className="shop-filters rv">
         <button
           className={`f-btn${active === "all" ? " active" : ""}`}
-          onClick={() => setActive("all")}
+          onClick={() => selectCategory("all")}
         >
           Todos
         </button>
-        {categories.map((cat) => (
+
+        {categories.map((category) => (
           <button
-            key={cat}
-            className={`f-btn${active === cat ? " active" : ""}`}
-            onClick={() => setActive(cat)}
+            key={category}
+            className={`f-btn${active === category ? " active" : ""}`}
+            onClick={() => selectCategory(category)}
           >
-            {cat.charAt(0).toUpperCase() + cat.slice(1)}
+            {category.charAt(0).toUpperCase() + category.slice(1)}
           </button>
         ))}
       </div>
 
       <div className="prod-grid">
-        {visible.map((p) => {
-          const image = p.images.edges[0]?.node;
-          const price = p.priceRange.minVariantPrice;
+        {visible.map((product) => {
+          const image = product.images.edges[0]?.node;
+          const price = product.priceRange.minVariantPrice;
 
           return (
-            <div key={p.id} className="prod-card rv" data-cat={p.productType}>
+            <div
+              key={product.id}
+              className="prod-card rv"
+              data-cat={product.productType}
+            >
               <div className="prod-img">
                 {image ? (
                   <img
                     src={image.url}
-                    alt={image.altText ?? p.title}
+                    alt={image.altText ?? product.title}
                     className="prod-photo"
                     loading="lazy"
                   />
                 ) : (
-                  <span className="prod-img-lbl">{p.title}</span>
+                  <span className="prod-img-lbl">{product.title}</span>
                 )}
-                {p.productType && (
-                  <span className="prod-badge">{p.productType}</span>
+
+                {product.productType && (
+                  <span className="prod-badge">{product.productType}</span>
                 )}
+
                 <span className="prod-dot" />
               </div>
+
               <div className="prod-body">
-                <h3 className="prod-name">{p.title}</h3>
-                <p className="prod-desc">{p.description}</p>
+                <h3 className="prod-name">{product.title}</h3>
+                <p className="prod-desc">{product.description}</p>
+
                 <div className="prod-foot">
                   <span className="prod-price">
                     {formatPrice(price.amount, price.currencyCode)}
                   </span>
+
                   <div className="prod-acts">
-                    {p.availableForSale && (
-                      <a href={`/productos/${p.handle}`} className="btn btn-ghost btn-sm">
+                    {product.availableForSale && (
+                      <a
+                        href={`/productos/${product.handle}`}
+                        className="btn btn-ghost btn-sm"
+                      >
                         Ver
                       </a>
                     )}
+
                     <button
-                      className={`btn btn-acc btn-sm${!p.availableForSale ? " btn-disabled" : ""}`}
-                      disabled={!p.availableForSale}
+                      className={`btn btn-acc btn-sm${
+                        !product.availableForSale ? " btn-disabled" : ""
+                      }`}
+                      disabled={!product.availableForSale}
                       onClick={() => {
-                        const variantId = p.variants.edges[0]?.node.id;
+                        const variantId =
+                          product.variants.edges[0]?.node.id;
+
                         if (variantId) addItem(variantId);
                       }}
                     >
-                      {p.availableForSale ? "+ Carro" : "Sin stock"}
+                      {product.availableForSale ? "+ Carro" : "Sin stock"}
                     </button>
                   </div>
                 </div>
@@ -102,7 +165,9 @@ export default function TiendaGrid({ products, categories }: Props) {
       </div>
 
       {visible.length === 0 && (
-        <p className="shop-empty">No hay productos en esta categoría.</p>
+        <p className="shop-empty">
+          No hay productos en esta categoría.
+        </p>
       )}
     </>
   );
