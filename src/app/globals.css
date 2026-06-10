@@ -126,7 +126,7 @@ html[data-theme="light"] nav.scrolled { background: rgba(238,244,249,.96); }
   width: 100%; max-width: 1440px; margin: 0 auto;
 }
 .nav-logo { display: flex; align-items: center; gap: 11px; }
-.logo-img { height: 52px; width: auto; display: block; }
+.logo-img { height: 100px; width: auto; display: block; }
 .logo-img-light { display: block; }
 .logo-img-dark  { display: none; }
 html[data-theme="light"] .logo-img-light { display: none; }
