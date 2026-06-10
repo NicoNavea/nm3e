@@ -47,7 +47,16 @@ export default async function ProductoPage({ params }: Props) {
         <header className="art-topbar">
           <Link href="/" className="art-topbar-logo">
             <Image
-              src="/uploads/nm3e-letras-oscuras.jpeg"
+              src="/uploads/logo-dark.png"
+              className="logo-img-light"
+              alt="NM3E"
+              width={120}
+              height={33}
+              priority
+            />
+            <Image
+              src="/uploads/logo-white.png"
+              className="logo-img-dark"
               alt="NM3E"
               width={120}
               height={33}

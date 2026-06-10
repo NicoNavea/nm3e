@@ -41,8 +41,9 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" data-theme="light">
+    <html lang="es">
       <head>
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var t=localStorage.getItem('theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');})();` }} />
       </head>
       <body
         className={`${barlowCondensed.variable} ${barlow.variable} ${spaceMono.variable}`}

@@ -12,7 +12,8 @@ export default function Footer() {
         <div className="foot-grid">
           <div className="foot-brand">
             <a href={anchorHref("#hero")} className="nav-logo">
-              <Image src="/uploads/logo-white.png" className="logo-img" alt="NM3E" width={160} height={44} />
+              <Image src="/uploads/logo-dark.png" className="logo-img logo-img-light" alt="NM3E" width={160} height={44} />
+              <Image src="/uploads/logo-white.png" className="logo-img logo-img-dark" alt="NM3E" width={160} height={44} />
             </a>
             <p>Ingeniería eléctrica industrial. Diagnóstico, implementación y monitoreo continuo para instalaciones que no pueden detenerse.</p>
           </div>

@@ -17,8 +17,9 @@ export default function Navbar() {
   useEffect(() => {
     const saved = localStorage.getItem("theme") as "dark" | "light" | null;
     if (saved === "light") {
-      document.documentElement.setAttribute("data-theme", "light");
       setTheme("light");
+    } else {
+      if (!saved) localStorage.setItem("theme", "dark");
     }
   }, []);
 
@@ -68,8 +69,16 @@ export default function Navbar() {
         <div className="nav-inner">
           <a href={anchorHref("#hero")} className="nav-logo">
             <Image
+              src="/uploads/logo-dark.png"
+              className="logo-img logo-img-light"
+              alt="NM3E"
+              width={160}
+              height={44}
+              priority
+            />
+            <Image
               src="/uploads/logo-white.png"
-              className="logo-img"
+              className="logo-img logo-img-dark"
               alt="NM3E"
               width={160}
               height={44}

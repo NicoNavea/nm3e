@@ -24,11 +24,6 @@ export default function Home() {
       <Blog />
       <Servicios />
       <Proceso />
-
-
-
-      <Cifras />
-
       <Contacto />
       <CtaFinal />
       <Footer />

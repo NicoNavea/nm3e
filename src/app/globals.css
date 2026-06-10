@@ -126,10 +126,9 @@ html[data-theme="light"] nav.scrolled { background: rgba(238,244,249,.96); }
   width: 100%; max-width: 1440px; margin: 0 auto;
 }
 .nav-logo { display: flex; align-items: center; gap: 11px; }
-.logo-img { height: 44px; width: auto; display: block; mix-blend-mode: screen; }
-html[data-theme="light"] .logo-img { mix-blend-mode: multiply; }
-.logo-img-light { display: block; mix-blend-mode: screen; }
-.logo-img-dark  { display: none;  mix-blend-mode: multiply; }
+.logo-img { height: 44px; width: auto; display: block; }
+.logo-img-light { display: block; }
+.logo-img-dark  { display: none; }
 html[data-theme="light"] .logo-img-light { display: none; }
 html[data-theme="light"] .logo-img-dark  { display: block; }
 .foot-brand .logo-img { height: 54px; }
@@ -789,6 +788,7 @@ html[data-theme="light"] .ct-input { background: rgba(238,244,249,.6); }
   .foot-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
 }
 @media(max-width:900px) {
+  #problema::before { content: none; }
   nav { padding: 0 24px; }
   .nav-links, .nav-cta-d { display: none !important; }
   .ham { display: flex; }
