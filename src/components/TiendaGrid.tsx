@@ -176,10 +176,12 @@ export default function TiendaGrid({ products, categories }: Props) {
 
                 <div className="prod-foot">
                   <span className="prod-price">
-                    {formatPrice(
-                      price.amount,
-                      price.currencyCode
-                    )}
+                    {isQuoteOnly
+                      ? "Precio a consultar"
+                      : formatPrice(
+                          price.amount,
+                          price.currencyCode
+                        )}
                   </span>
 
                   <div className="prod-acts">
