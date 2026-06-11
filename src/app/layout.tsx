@@ -3,6 +3,7 @@ import { Barlow_Condensed, Barlow, Space_Mono } from "next/font/google";
 import "./globals.css";
 import CartProvider from "@/components/CartProvider";
 import CartDrawer from "@/components/CartDrawer";
+import { Analytics } from "@vercel/analytics/next";
 
 const barlowCondensed = Barlow_Condensed({
   weight: ["400", "600", "700", "900"],
@@ -59,6 +60,8 @@ export default function RootLayout({
           {children}
           <CartDrawer />
         </CartProvider>
+
+        <Analytics />
       </body>
     </html>
   );
