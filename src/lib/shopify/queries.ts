@@ -26,6 +26,7 @@ export const getProductByHandleQuery = `
           node {
             id
             title
+            sku
             availableForSale
             price {
               amount
@@ -163,3 +164,4 @@ export const getProductsQuery = `
     }
   }
 `;
+
