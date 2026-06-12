@@ -28,19 +28,12 @@ export default function ProductoDetalle({
 }: {
   product: ShopifyProductDetail;
 }) {
-  const variants = product.variants.edges.map(
-    (edge) => edge.node
-  );
-
-  const images = product.images.edges.map(
-    (edge) => edge.node
-  );
+  const variants = product.variants.edges.map((edge) => edge.node);
+  const images = product.images.edges.map((edge) => edge.node);
 
   const [selectedVariant, setSelectedVariant] =
     useState<ShopifyVariant>(variants[0]);
-
   const [activeImage, setActiveImage] = useState(0);
-
   const { addItem, isLoading } = useCartStore();
 
   const isQuoteOnly = product.tags.some(
@@ -63,16 +56,12 @@ export default function ProductoDetalle({
 
   return (
     <div className="pd-wrap">
-      {/* Galería */}
       <div className="pd-gallery">
         <div className="pd-img-main">
           {images[activeImage] ? (
             <img
               src={images[activeImage].url}
-              alt={
-                images[activeImage].altText ??
-                product.title
-              }
+              alt={images[activeImage].altText ?? product.title}
             />
           ) : (
             <div className="pd-img-placeholder">
@@ -87,9 +76,7 @@ export default function ProductoDetalle({
               <button
                 key={index}
                 className={`pd-thumb${
-                  activeImage === index
-                    ? " active"
-                    : ""
+                  activeImage === index ? " active" : ""
                 }`}
                 onClick={() => setActiveImage(index)}
                 aria-label={`Ver imagen ${index + 1}`}
@@ -107,7 +94,6 @@ export default function ProductoDetalle({
         )}
       </div>
 
-      {/* Información */}
       <div className="pd-info">
         {product.productType && (
           <span className="pd-badge">
@@ -115,23 +101,23 @@ export default function ProductoDetalle({
           </span>
         )}
 
-        <h1 className="pd-title">
-          {product.title}
-        </h1>
+        <h1 className="pd-title">{product.title}</h1>
+
+        {selectedVariant?.sku && (
+          <p className="pd-sku">
+            SKU: {selectedVariant.sku}
+          </p>
+        )}
 
         {!isQuoteOnly && (
           <p className="pd-price">{price}</p>
         )}
 
-        <p className="pd-desc">
-          {product.description}
-        </p>
+        <p className="pd-desc">{product.description}</p>
 
         {hasVariantChoice && (
           <div className="pd-variants">
-            <p className="pd-variants-label">
-              Variante
-            </p>
+            <p className="pd-variants-label">Variante</p>
 
             <div className="pd-variants-grid">
               {variants.map((variant) => (
@@ -142,17 +128,13 @@ export default function ProductoDetalle({
                       ? " active"
                       : ""
                   }${
-                    !variant.availableForSale &&
-                    !isQuoteOnly
+                    !variant.availableForSale && !isQuoteOnly
                       ? " disabled"
                       : ""
                   }`}
-                  onClick={() =>
-                    setSelectedVariant(variant)
-                  }
+                  onClick={() => setSelectedVariant(variant)}
                   disabled={
-                    !variant.availableForSale &&
-                    !isQuoteOnly
+                    !variant.availableForSale && !isQuoteOnly
                   }
                 >
                   {variant.title}
@@ -176,8 +158,7 @@ export default function ProductoDetalle({
             <button
               className="btn btn-cyan btn-lg"
               disabled={
-                !selectedVariant?.availableForSale ||
-                isLoading
+                !selectedVariant?.availableForSale || isLoading
               }
               onClick={() => {
                 if (selectedVariant) {
@@ -207,3 +188,4 @@ export default function ProductoDetalle({
     </div>
   );
 }
+
