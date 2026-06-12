@@ -7,7 +7,11 @@ export interface CartLineItem {
     product: {
       title: string;
       handle: string;
-      images: { edges: { node: { url: string; altText: string | null } }[] };
+      images: {
+        edges: {
+          node: { url: string; altText: string | null };
+        }[];
+      };
     };
   };
   cost: {
@@ -41,6 +45,7 @@ export interface CartItem {
 export interface ShopifyVariant {
   id: string;
   title: string;
+  sku: string | null;
   availableForSale: boolean;
   price: {
     amount: string;
@@ -62,7 +67,9 @@ export interface ShopifyProductDetail {
     };
   };
   images: {
-    edges: { node: { url: string; altText: string | null } }[];
+    edges: {
+      node: { url: string; altText: string | null };
+    }[];
   };
   variants: {
     edges: { node: ShopifyVariant }[];
@@ -84,9 +91,14 @@ export interface ShopifyProduct {
     };
   };
   images: {
-    edges: { node: { url: string; altText: string | null } }[];
+    edges: {
+      node: { url: string; altText: string | null };
+    }[];
   };
   variants: {
-    edges: { node: { id: string; availableForSale: boolean } }[];
+    edges: {
+      node: { id: string; availableForSale: boolean };
+    }[];
   };
 }
+
