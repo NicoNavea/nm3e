@@ -1016,3 +1016,11 @@ html[data-theme="light"] .ct-input { background: rgba(238,244,249,.6); }
 #mob-menu .mob-shop-categories a:hover {
   color: var(--primary);
 }
+
+.pd-sku {
+  font-family: var(--fMono);
+  font-size: 11px;
+  color: var(--dim);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
