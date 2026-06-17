@@ -44,6 +44,10 @@ const cartFragment = `
     id
     checkoutUrl
     totalQuantity
+    attributes {
+      key
+      value
+    }
     cost {
       totalAmount { amount currencyCode }
     }
@@ -118,6 +122,26 @@ export const cartLinesRemoveMutation = `
   }
 `;
 
+export const cartAttributesUpdateMutation = `
+  ${cartFragment}
+  mutation cartAttributesUpdate($cartId: ID!, $attributes: [AttributeInput!]!) {
+    cartAttributesUpdate(cartId: $cartId, attributes: $attributes) {
+      cart { ...CartFields }
+      ${userErrorsFragment}
+    }
+  }
+`;
+
+export const cartBuyerIdentityUpdateMutation = `
+  ${cartFragment}
+  mutation cartBuyerIdentityUpdate($cartId: ID!, $buyerIdentity: CartBuyerIdentityInput!) {
+    cartBuyerIdentityUpdate(cartId: $cartId, buyerIdentity: $buyerIdentity) {
+      cart { ...CartFields }
+      ${userErrorsFragment}
+    }
+  }
+`;
+
 export const getCartQuery = `
   ${cartFragment}
   query getCart($cartId: ID!) {
@@ -164,4 +188,5 @@ export const getProductsQuery = `
     }
   }
 `;
+
 
