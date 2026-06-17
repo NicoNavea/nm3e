@@ -411,7 +411,7 @@ export default function CartDrawer() {
                   disabled={!cartUrl || isLoading}
                   onClick={goToCheckout}
                 >
-                  {isLoading ? "Guardando..." : "Ir a Webpay"}
+                  {isLoading ? "Guardando..." : "Ir a Pagar"}
                 </button>
               </div>
             )}
