@@ -110,7 +110,12 @@ export default function ProductoDetalle({
         )}
 
         {!isQuoteOnly && (
-          <p className="pd-price">{price}</p>
+          <p className="pd-price">
+            {price}
+            <span className="pd-price-note">
+              Precios con IVA incluido
+            </span>
+          </p>
         )}
 
         <p className="pd-desc">{product.description}</p>
