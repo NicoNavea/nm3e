@@ -7,6 +7,8 @@ import {
   updateCartLine,
   removeCartLine,
   fetchCart,
+  updateCheckoutDetails,
+  type CheckoutDetails,
 } from '@/lib/shopify/cart';
 
 interface CartState {
@@ -27,6 +29,7 @@ interface CartState {
   addItem: (variantId: string, quantity?: number) => Promise<void>;
   updateItem: (lineId: string, quantity: number) => Promise<void>;
   removeItem: (lineId: string) => Promise<void>;
+  saveCheckoutDetails: (details: CheckoutDetails) => Promise<void>;
 }
 
 function applyCartUpdate(
@@ -52,20 +55,26 @@ export const useCartStore = create<CartState>()(
       items: [],
       totalQuantity: 0,
       total: '0',
-      currencyCode: 'MXN',
+      currencyCode: 'CLP',
       isOpen: false,
       isLoading: false,
 
       openCart: () => set({ isOpen: true }),
       closeCart: () => set({ isOpen: false }),
-      toggleCart: () => set((s) => ({ isOpen: !s.isOpen })),
+      toggleCart: () => set((state) => ({ isOpen: !state.isOpen })),
 
       hydrateCart: async () => {
         const { cartId } = get();
         if (!cartId) return;
         const result = await fetchCart(cartId);
         if (!result) {
-          set({ cartId: null, cartUrl: null, items: [], totalQuantity: 0, total: '0' });
+          set({
+            cartId: null,
+            cartUrl: null,
+            items: [],
+            totalQuantity: 0,
+            total: '0',
+          });
           return;
         }
         applyCartUpdate(set, result);
@@ -108,10 +117,21 @@ export const useCartStore = create<CartState>()(
           set({ isLoading: false });
         }
       },
+
+      saveCheckoutDetails: async (details) => {
+        const { cartId } = get();
+        if (!cartId) throw new Error('No hay carrito activo');
+        set({ isLoading: true });
+        try {
+          const result = await updateCheckoutDetails(cartId, details);
+          applyCartUpdate(set, result);
+        } finally {
+          set({ isLoading: false });
+        }
+      },
     }),
     {
       name: 'nm3e-cart',
-      // Only persist the cart identity — items are always rehydrated from Shopify on load
       partialize: (state) => ({ cartId: state.cartId }),
     }
   )
